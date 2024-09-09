@@ -1,0 +1,36 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}
+    Форма с выпадающим списком
+{% endblock %}
+
+{% block content %}
+    <div class="form-container">
+        <form action="#" method="post">
+            <label for="family">Семейство:</label>
+            <select id="family" name="family">
+                <option value="mvbs">МВВС</option>
+                <option value="sk">СК</option>
+                <option value="skdr">СКДР</option>
+            </select>
+
+            <label for="type">Тип изделия:</label>
+            <select id="type" name="type">
+                <option value="mpd">МПД</option>
+                <option value="mvd">МВД</option>
+                <option value="mva">МВА</option>
+            </select>
+
+            <label for="modules">Количество модулей:</label>
+            <input type="number" id="modules" name="modules" min="1" required>
+
+            <label for="production-date">Дата производства:</label>
+            <input type="date" id="production-date" name="production-date" required>
+
+            <label for="history">История модуля:</label>
+            <textarea id="history" name="history" maxlength="10000"></textarea>
+
+            <input type="submit" value="Отправить" class="submit-button">
+        </form>
+    </div>
+{% endblock %}
