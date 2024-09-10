@@ -75,7 +75,14 @@ WSGI_APPLICATION = 'metanit.wsgi.application'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 DATABASES = {
-
+        'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'postgres',
+        'USER': 'postgres',
+        'PASSWORD': 'Nikiet321',
+        'HOST': 'localhost',  # Replace with your PostgreSQL server's address if necessary
+        'PORT': '5432',  # Leave empty to use the default PostgreSQL port (usually 5432)
+        }
 
 }
 
