@@ -286,3 +286,19 @@ form textarea {
 .header .logout-button:hover {
     background-color: #0056b3; /* Темнее красный при наведении */
 }
+
+.registration-link {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.registration-link a {
+    color: #4CAF50;
+    text-decoration: none;
+}
+
+.registration-link a:hover {
+    text-decoration: underline;
+}
+
+

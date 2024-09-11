@@ -15,3 +15,5 @@ def status (request):
 def logout_view(request):
     auth_logout(request)
     return redirect('home')
+def registration (request):
+    return render(request,'main/registration.html')
