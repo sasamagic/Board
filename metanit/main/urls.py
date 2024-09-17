@@ -1,6 +1,7 @@
 
 from django.urls import path, include #подключили новый метод
 from . import views
+
 urlpatterns = [
     path('', views.index, name='home'),
     path('user', views.user, name='user'),
@@ -8,4 +9,6 @@ urlpatterns = [
     path('status', views.status, name='status'),
     path('logout/', views.logout_view, name='logout'),
     path('registration', views.registration, name='registration'),
+
+
 ]
