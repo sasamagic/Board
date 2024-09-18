@@ -28,11 +28,8 @@ def modules (request):
     }
     return render(request,'main/modules.html',context) # пока работаю с этой фигней#
 def status (request):
-    product = Modules.objects.all()
-    context = {
-        'pr': product
-    }
-    return render(request,'main/status.html',context)
+    tasks = Modules.objects.all()
+    return render(request,'main/status.html',{'title': 'Статус модуля','tasks':tasks})
 
 def logout_view(request):
     auth_logout(request)

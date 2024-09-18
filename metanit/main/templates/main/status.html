@@ -1,16 +1,35 @@
 {% extends 'main/layout.html' %}
 
-{% block title %}Статус модулей{% endblock %}
+{% block title %}{{ title }}{% endblock %}
 
 {% block content %}
+
     <p>Чтобы узнать информацию о изделии, отсканируйте QR код на его корпусе или введите в строку его серийный номер</p>
 
     <div class="form-container">
+
         <form method="get" action="{% url 'status' %}">
             <label for="serial-number">Введите серийный номер:</label>
             <input type="text" id="serial-number" name="serial_number" required>
             <button type="submit" class="submit-button">Отправить</button>
+
+            {% for el in tasks %}
+    <div class="alert alert-warning">
+        <p>{{ el.product_family }}</p>
+        <p>{{ el.product_type }}</p>
+        <p>{{ el.revision }}</p>
+        <p>{{ el.serial_number }}</p>
+        <p>{{ el.sequence_number }}</p>
+        <p>{{ el.manufacturer }}</p>
+        <p>{{ el.date_of_production }}</p>
+        <p>{{ el.history_of_module }}</p>
+    </div>
+    {% endfor %}
+
         </form>
+
+
+
     </div>
 
     <h2>Список модулей</h2>
