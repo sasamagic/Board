@@ -14,3 +14,7 @@ class Modules(models.Model):
         db_table = 'modules'
     def __str__(self):
         return self.serial_number
+
+
+
+

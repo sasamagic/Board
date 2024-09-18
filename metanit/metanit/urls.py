@@ -18,11 +18,13 @@ from django.contrib import admin
 from django.urls import path, include #подключили новый метод
 from django.conf import settings
 from django.conf.urls.static import static
+from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('main.urls')), #в методе path передаем:
     # 1 - адрес страницы, которую надо отследить, если главную, то ничего.
     # 2 - вызвать файл из приложения путь  отслеживание перехода на главную страницу
+
 
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

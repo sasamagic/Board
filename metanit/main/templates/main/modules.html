@@ -3,7 +3,7 @@
 
 {% extends 'main/layout.html' %}
 {% block title %}
-    Форма с выпадающим списком
+    Регистрация модуля
 {% endblock %}
 
 {% block content %}
@@ -75,7 +75,6 @@
                 options = ['Каркас объединительный КО.1', 'Заглушка	еЦ6.433.069','Заглушка	еЦ6.433.070'];
             }
 
-
             // Заполнение второго выпадающего списка
             options.forEach(option => {
                 const newOption = document.createElement('option');
@@ -84,47 +83,70 @@
                 secondSelect.appendChild(newOption);
             });
         }
+
+        {#// При загрузке страницы устанавливаем значение второго select#}
+        {#document.addEventListener("DOMContentLoaded", function() {#}
+        {#    const familySelect = document.getElementById('firstSelect');#}
+        {#    const typeSelect = document.getElementById('secondSelect');#}
+        {##}
+        {#    // Проверяем, если family уже выбрано#}
+        {#    if (familySelect.value) {#}
+        {#        updateSecondSelect();#}
+        {#    }#}
+        {#});#}
+
+
+
     </script>
 </head>
 
 <body>
     <h1>Регистрация модуля</h1>
 
-    <form>
-        <label for="firstSelect">Выберите семейство:</label>
-        <select id="firstSelect" onchange="updateSecondSelect()">
-            <option value="">-- Выбор --</option>
-            <option value="MU">Модули управляющие</option>
-            <option value="MVVS">Модули ввода-вывода сигналов</option>
-            <option value="MR">Модули расширения</option>
-            <option value="MD">Модули диагностики</option>
-            <option value="MVVS_SPIN">Модули ввода-вывода сигналов СПиН</option>
-            <option value="KP">Объединительные платы</option>
-            <option value="BOS">Оптические свитчи, коммутаторы</option>
-            <option value="BV">Блоки питания</option>
-            <option value="SK">Соединители клеммные</option>
-            <option value="KABELS">Кабельная продукция</option>
-            <option value="KONSTRUCTIVEELEMINT">Конструктивный элемент</option>
-        </select>
+    <form method="post">
+        {% csrf_token %}
+        <label>Выберите семейство:</label>
+        {{ form.family }}
+        <label>Выберите тип изделия:</label>
+        {{ form.type }}
+        <label>Выберите количество модулей:</label>
+        {{ form.module_count }}
+        <label>Выберите дату производства:</label>
+        {{ form.production_date }}
+        <label>История модуля:</label>
+        {{ form.history }}
+{#        <label for="firstSelect">Выберите семейство:</label>#}
+{#        <select id="firstSelect" onchange="updateSecondSelect()">#}
+{#            <option value="">-- Выбор --</option>#}
+{#            <option value="MU">Модули управляющие</option>#}
+{#            <option value="MVVS">Модули ввода-вывода сигналов</option>#}
+{#            <option value="MR">Модули расширения</option>#}
+{#            <option value="MD">Модули диагностики</option>#}
+{#            <option value="MVVS_SPIN">Модули ввода-вывода сигналов СПиН</option>#}
+{#            <option value="KP">Объединительные платы</option>#}
+{#            <option value="BOS">Оптические свитчи, коммутаторы</option>#}
+{#            <option value="BV">Блоки питания</option>#}
+{#            <option value="SK">Соединители клеммные</option>#}
+{#            <option value="KABELS">Кабельная продукция</option>#}
+{#            <option value="KONSTRUCTIVEELEMINT">Конструктивный элемент</option>#}
+{#        </select>#}
+{##}
+{#        <label for="secondSelect">Выбор типа:</label>#}
+{#        <select id="secondSelect">#}
+{#            <option value="">-- Выбор --</option>#}
+{#        </select>#}
 
-        <label for="secondSelect">Выбор типа:</label>
-        <select id="secondSelect">
-            <option value="">-- Выбор --</option>
-        </select>
 
-
-                    <label for="modules">Количество модулей:</label>
-            <input type="number" id="modules" name="modules" min="1" required>
-
-            <label for="production-date">Дата производства:</label>
-            <input type="date" id="production-date" name="production-date" required>
-
-            <label for="history">История модуля:</label>
-            <textarea id="history" name="history" maxlength="10000"></textarea>
+{#                    <label for="modules">Количество модулей:</label>#}
+{#            <input type="number" id="modules" name="modules" min="1" required>#}
+{##}
+{#            <label for="production-date">Дата производства:</label>#}
+{#            <input type="date" id="production-date" name="production-date" required>#}
+{##}
+{#            <label for="history">История модуля:</label>#}
+{#            <textarea id="history" name="history" maxlength="10000"></textarea>#}
 
             <input type="submit" value="Отправить" class="submit-button">
-
-
     </form>
 </body>
     </div>
