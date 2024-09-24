@@ -7,27 +7,24 @@
 {% endblock %}
 
 {% block content %}
-    <div class="form-container">
+<div class="form-container">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Динамические выпадающие списки</title>
     <script>
         function updateSecondSelect() {
-            // Получаем значение первого выпадающего списка
             const firstSelect = document.getElementById('firstSelect');
             const secondSelect = document.getElementById('secondSelect');
             const selectedValue = firstSelect.value;
 
-            // Очистка второго выпадающего списка
-            secondSelect.innerHTML = '';
+            secondSelect.innerHTML = ''; // Clear previous options
 
-            // Добавление опций в зависимости от выбора в первом списке
             let options = [];
             if (selectedValue === 'MU') {
-                options = ['Модуль МУ.1 еЦ5.155.01904', 'Модуль МУ.1 еЦ5.155.019-0104','Модуль МУ.3 еЦ5.155.02304','Модуль МУ.3 еЦ5.155.023-0104'];
-
-            } else if (selectedValue === 'MVVS') {
-                options = ['Модуль МПД', 'Модуль МВД','Модуль МВД‑У', 'Модуль МПТ','Модуль МВА', 'Модуль МПА','Модуль МПИ‑У', 'Модуль МСР','Модуль МКА', 'Модуль МППТ','Модуль МПИ'];
+                options = ['Модуль МУ.1 еЦ5.155.01904', 'Модуль МУ.1 еЦ5.155.019-0104', 'Модуль МУ.3 еЦ5.155.02304', 'Модуль МУ.3 еЦ5.155.023-0104'];
+            }
+            else if (selectedValue === 'MVVS') {
+                options = ['Модуль МПД', 'Модуль МВД', 'Модуль МВД‑У', 'Модуль МПТ', 'Модуль МВА', 'Модуль МПА', 'Модуль МПИ‑У', 'Модуль МСР', 'Модуль МКА', 'Модуль МППТ', 'Модуль МПИ'];
             }
             else if (selectedValue === 'MR') {
                 options = ['Модуль МР'];
@@ -65,7 +62,7 @@
 'Кабель КПИ.4еЦ6.641.774-0204', 'Кабель КПИ.4еЦ6.641.774-0304', 'Кабель КПИ.4еЦ6.641.774-0404', 'Кабель КПИ.4еЦ6.641.774-0504',
 'Кабель КПИ.5еЦ6.641.77504', 'Кабель КПИ.5еЦ6.641.775-0104', 'Кабель КПИ.5еЦ6.641.775-0204', 'Кабель КПИ.5еЦ6.641.775-0304', 'Кабель КПИ.5еЦ6.641.775-0404',
 'Кабель КПИ.5еЦ6.641.775-0504', 'Кабель КПИ.6еЦ6.641.77604', 'Кабель КПИ.6еЦ6.641.776-0104', 'Кабель КПИ.6еЦ6.641.776-0204', 'Кабель КПИ.6еЦ6.641.776-0304', 'Кабель КПИ.6еЦ6.641.776-0404', 'Кабель КПИ.6еЦ6.641.776-0504',
-'Кабель КПИ.7еЦ6.641.77704', 'Кабель КПИ.7еЦ6.641.777-0104', 'Кабель КПИ.7еЦ6.641.777-0204', 'Кабель КПИ.7еЦ6.641.777-0304', 'Кабель КПИ.7еЦ6.641.777-0404', 'Кабель КПИ.7еЦ6.641.777-0504',
+'Кабель КПИ.7еЦ6.641.77704', 'Кабель КПИ.7еЦ6.6410,.777-0104', 'Кабель КПИ.7еЦ6.641.777-0204', 'Кабель КПИ.7еЦ6.641.777-0304', 'Кабель КПИ.7еЦ6.641.777-0404', 'Кабель КПИ.7еЦ6.641.777-0504',
 'Кабель КПИ.8еЦ6.641.77804', 'Кабель КПИ.8еЦ6.641.778-0104', 'Кабель КПИ.8еЦ6.641.778-0204', 'Кабель КПИ.8еЦ6.641.778-0304', 'Кабель КПИ.8еЦ6.641.778-0404', 'Кабель КПИ.8еЦ6.641.778-0504',
 'Кабель КИ.1еЦ6.641.74804', 'Кабель КИ.1еЦ6.641.748-0104', 'Кабель КИ.1еЦ6.641.748-0204', 'Кабель КИ.1еЦ6.641.748-0304', 'Кабель КИ.1еЦ6.641.748-0404',
 'Кабель КИ.2еЦ6.641.74904', 'Кабель КИ.2еЦ6.641.749-0104', 'Кабель КИ.2еЦ6.641.749-0204', 'Кабель КИ.2еЦ6.641.749-0304', 'Кабель КИ.2еЦ6.641.749-0404', 'Кабель КИ.3еЦ6.641.79404', 'Кабель КИ.4еЦ6.641.79504',
@@ -83,19 +80,6 @@
                 secondSelect.appendChild(newOption);
             });
         }
-
-        {#// При загрузке страницы устанавливаем значение второго select#}
-        {#document.addEventListener("DOMContentLoaded", function() {#}
-        {#    const familySelect = document.getElementById('firstSelect');#}
-        {#    const typeSelect = document.getElementById('secondSelect');#}
-        {##}
-        {#    // Проверяем, если family уже выбрано#}
-        {#    if (familySelect.value) {#}
-        {#        updateSecondSelect();#}
-        {#    }#}
-
-
-
 
     </script>
 </head>
@@ -115,37 +99,6 @@
         {{ form.production_date }}
         <label>История модуля:</label>
         {{ form.history }}
-{#        <label for="firstSelect">Выберите семейство:</label>#}
-{#        <select id="firstSelect" onchange="updateSecondSelect()">#}
-{#            <option value="">-- Выбор --</option>#}
-{#            <option value="MU">Модули управляющие</option>#}
-{#            <option value="MVVS">Модули ввода-вывода сигналов</option>#}
-{#            <option value="MR">Модули расширения</option>#}
-{#            <option value="MD">Модули диагностики</option>#}
-{#            <option value="MVVS_SPIN">Модули ввода-вывода сигналов СПиН</option>#}
-{#            <option value="KP">Объединительные платы</option>#}
-{#            <option value="BOS">Оптические свитчи, коммутаторы</option>#}
-{#            <option value="BV">Блоки питания</option>#}
-{#            <option value="SK">Соединители клеммные</option>#}
-{#            <option value="KABELS">Кабельная продукция</option>#}
-{#            <option value="KONSTRUCTIVEELEMINT">Конструктивный элемент</option>#}
-{#        </select>#}
-{##}
-{#        <label for="secondSelect">Выбор типа:</label>#}
-{#        <select id="secondSelect">#}
-{#            <option value="">-- Выбор --</option>#}
-{#        </select>#}
-
-
-{#                    <label for="modules">Количество модулей:</label>#}
-{#            <input type="number" id="modules" name="modules" min="1" required>#}
-{##}
-{#            <label for="production-date">Дата производства:</label>#}
-{#            <input type="date" id="production-date" name="production-date" required>#}
-{##}
-{#            <label for="history">История модуля:</label>#}
-{#            <textarea id="history" name="history" maxlength="10000"></textarea>#}
-
             <input type="submit" value="Отправить" class="submit-button">
     </form>
 </body>

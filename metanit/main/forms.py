@@ -2,6 +2,7 @@ from .models import reg
 from django.forms import ModelForm, TextInput
 from django import forms
 
+
 class regForm(ModelForm):
     class Meta:
         model = reg
@@ -29,3 +30,5 @@ class regForm(ModelForm):
                 'maxlength': '10000',
             }),
         }
+
+# форма для ввода серийного номера

@@ -3,66 +3,69 @@
 {% block title %}{{ title }}{% endblock %}
 
 {% block content %}
-
-    <p>Чтобы узнать информацию о изделии, отсканируйте QR код на его корпусе или введите в строку его серийный номер</p>
-
     <div class="form-container">
 
         <form method="get" action="{% url 'status' %}">
             <label for="serial-number">Введите серийный номер:</label>
             <input type="text" id="serial-number" name="serial_number" required>
             <button type="submit" class="submit-button">Отправить</button>
+        </form><br><br>
 
-            {% for el in tasks %}
-    <div class="alert alert-warning">
-        <p>{{ el.product_family }}</p>
-        <p>{{ el.product_type }}</p>
-        <p>{{ el.revision }}</p>
-        <p>{{ el.serial_number }}</p>
-        <p>{{ el.sequence_number }}</p>
-        <p>{{ el.manufacturer }}</p>
-        <p>{{ el.date_of_production }}</p>
-        <p>{{ el.history_of_module }}</p>
+        {% if tasks %}
+            <table>
+                <thead>
+                <style>
+    table {
+        border-collapse: separate;
+        border-spacing: 10px; /* Расстояние между колонками */
+    }
+                </style>
+
+{#                    <tr>#}
+{#                        <th>Название</th>#}
+{#                        <th>Значение</th>#}
+{#                    </tr>#}
+                </thead>
+                <tbody>
+                    {% for el in tasks %}
+                        <tr>
+                            <td>Семейство продукта</td>
+                            <td>{{ el.product_family }}</td>
+                        </tr>
+                        <tr>
+                            <td>Тип продукта</td>
+                            <td>{{ el.product_type }}</td>
+                        </tr>
+                        <tr>
+                            <td>Ревизия</td>
+                            <td>{{ el.revision }}</td>
+                        </tr>
+                        <tr>
+                            <td>Серийный номер</td>
+                            <td>{{ el.serial_number }}</td>
+                        </tr>
+                        <tr>
+                            <td>Номер последовательности</td>
+                            <td>{{ el.sequence_number }}</td>
+                        </tr>
+                        <tr>
+                            <td>Производитель</td>
+                            <td>{{ el.manufacturer }}</td>
+                        </tr>
+                        <tr>
+                            <td>Дата производства</td>
+                            <td>{{ el.date_of_production }}</td>
+                        </tr>
+                        <tr>
+                            <td>История модуля</td>
+                            <td>{{ el.history_of_module }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>Такого модуля не существует</p>
+        {% endif %}
+
     </div>
-    {% endfor %}
-
-        </form>
-
-
-
-    </div>
-
-    <h2>Список модулей</h2>
-    {% if products %}
-        <table>
-            <thead>
-                <tr>
-                    <th>Серийный номер</th>
-                    <th>Семейство продукта</th>
-                    <th>Тип продукта</th>
-                    <th>Ревизия</th>
-                    <th>Номер последовательности</th>
-                    <th>Производитель</th>
-                    <th>Дата производства</th>
-                    <th>История модуля</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for product in products %}
-                    <tr>
-                        <td>{{ product.serial_number }}</td>
-                        <td>{{ product.product_family }}</td>
-                        <td>{{ product.product_type }}</td>
-                        <td>{{ product.revision }}</td>
-                        <td>{{ product.sequence_number }}</td>
-                        <td>{{ product.manufacturer }}</td>
-                        <td>{{ product.date_of_production }}</td>
-                        <td>{{ product.history_of_module }}</td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    {% else %}
-        <p>Нет данных для отображения.</p>
-    {% endif %}
 {% endblock %}

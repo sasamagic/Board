@@ -1,3 +1,4 @@
+# Тут описана модель для хранения информации формы "Регистрация модуля"
 from django.db import models
 
 class reg(models.Model):
@@ -95,4 +96,10 @@ class reg(models.Model):
     def __str__(self):
         return f"{self.family} - {self.type}"
 
+    # def __str__(self):
+    #     return f"Модуль: {self.type} (Семейство: {self.family})"
+
+
 # Create your models here.
+
+

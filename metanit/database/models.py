@@ -1,3 +1,5 @@
+# Тут описана модель для хранения полной информации о модулях
+
 from django.db import models
 
 class Modules(models.Model):
@@ -12,9 +14,10 @@ class Modules(models.Model):
     # добавьте другие поля, которые нужны
     class Meta:
         db_table = 'modules'
+    # def __str__(self):
+    #     return self.serial_number
     def __str__(self):
         return self.serial_number
-
 
 
 
