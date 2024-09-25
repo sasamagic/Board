@@ -5,16 +5,21 @@
 {% block content %}
     <div class="form_auth_block">
         <div class="form_auth_block_content">
+
+
             <p class="form_auth_block_head_text">Авторизация</p>
             <form class="form_auth_style" action="#" method="post">
-                <input type="username" name="auth_username" placeholder="Логин" required>
+                {% csrf_token %}
+                <input type="text" name="auth_login" placeholder="Логин или email" required>
                 <input type="password" name="auth_pass" placeholder="Пароль" required>
                 <button class="form_auth_button" type="submit" name="form_auth_submit">Войти</button>
             </form>
             <div class="registration-link">
                 <p>Нет аккаунта? <a href="{% url 'registration' %}">Зарегистрируйтесь</a></p>
                 <a href="reset_password.php">Забыли пароль?</a>
+{#                <a href="{% url 'reset_password' %}">Забыли пароль?</a>#}
             </div>
         </div>
     </div>
 {% endblock %}
+

@@ -4,12 +4,16 @@ from .forms import regForm
 from .forms import UserRegisterForm
 from django.shortcuts import render, redirect
 from django.contrib import messages
+from django.contrib.auth import authenticate, login
+from django.contrib.auth.models import User
+
 # Create your views here.
 
 def index(request):
     return render(request,'main/index.html')
-def user (request):
-    return render(request,'main/user.html')
+# def user (request):
+#     return render(request,'main/user.html')
+
 # def modules (request):
 #     error = ''
 #     if request.method == 'POST':
@@ -63,6 +67,7 @@ def logout_view(request):
     auth_logout(request)
     return redirect('home')
 
+# Модель для формы регистрации пользователя
 def registration (request):
     if request.method == 'POST':
         form = UserRegisterForm(request.POST) # Создается экземпляр формы UserRegisterForm, и в него передаются данные, полученные из request.POST
@@ -74,3 +79,30 @@ def registration (request):
     else:
         form = UserRegisterForm()
     return render(request, 'main/registration.html', {'form': form})
+
+# Модель для формы входа в аккаунт пользователя
+def user(request):
+    if request.method == 'POST':
+        username_or_email = request.POST['auth_login']
+        password = request.POST['auth_pass']
+
+        # Попробуйте аутентифицировать пользователя по имени пользователя
+        user = authenticate(request, username=username_or_email, password=password)
+
+        if user is None:
+            # Попробуйте найти пользователя по email
+            try:
+                user = User.objects.get(email=username_or_email)
+                if user.check_password(password):
+                    login(request, user)
+                    return redirect('home')  # Перенаправление на главную страницу
+                else:
+                    messages.error(request, "Неверный пароль")
+            except User.DoesNotExist:
+                messages.error(request, "Пользователь не найден")
+        else:
+            # Успешная аутентификация
+            login(request, user)
+            return redirect('home')  # Перенаправление на главную страницу
+
+    return render(request, 'main/user.html')  # Отображение формы входа
