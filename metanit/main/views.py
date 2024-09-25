@@ -1,9 +1,9 @@
-from django.shortcuts import render
-from django.shortcuts import redirect
 from django.contrib.auth import logout as auth_logout
 from database.models import Modules
 from .forms import regForm
-
+from .forms import UserRegisterForm
+from django.shortcuts import render, redirect
+from django.contrib import messages
 # Create your views here.
 
 def index(request):
@@ -62,5 +62,15 @@ def status (request):
 def logout_view(request):
     auth_logout(request)
     return redirect('home')
+
 def registration (request):
-    return render(request,'main/registration.html')
+    if request.method == 'POST':
+        form = UserRegisterForm(request.POST) # Создается экземпляр формы UserRegisterForm, и в него передаются данные, полученные из request.POST
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username') # Извлекается имя пользователя (username) из очищенных данных формы
+            messages.success(request, f'Создан аккаунт {username}!') # Генерируется сообщение об успешном создании аккаунта
+            return redirect('home')
+    else:
+        form = UserRegisterForm()
+    return render(request, 'main/registration.html', {'form': form})
