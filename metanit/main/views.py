@@ -28,8 +28,6 @@ def modules (request):
 def index(request):
     return render(request,'main/index.html')
 
-
-
 def status (request):
     serial_number = request.GET.get('serial_number')
     tasks = []

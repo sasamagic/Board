@@ -4,3 +4,6 @@ from django.contrib import admin
 
 from .models import reg
 admin.site.register(reg);
+
+from .models import info_modules
+admin.site.register(info_modules);

@@ -106,48 +106,6 @@
 {#    </div>#}
 {#{% endblock %}#}
 
-
-{#<!DOCTYPE html>#}
-{#<html lang="ru">#}
-{#<head>#}
-{#    <meta charset="UTF-8">#}
-{#    <meta name="viewport" content="width=device-width, initial-scale=1.0">#}
-{#    <title>Регистрация модуля</title>#}
-{#    <script>#}
-{#        // Добавьте логику автозаполнения здесь, если необходимо#}
-{#    </script>#}
-{#</head>#}
-{##}
-{#<body>#}
-{#    <div class="form-container">#}
-{#        <h1>Регистрация модуля</h1>#}
-{##}
-{#        <form method="post">#}
-{#            {% csrf_token %}#}
-{#            <div>#}
-{#                <label for="ec-number">Номер ец:</label>#}
-{#                {{ form.ec_number }}#}
-{#            </div>#}
-{#            <div>#}
-{#                <label for="modules">Выберите количество модулей:</label>#}
-{#                {{ form.module_count }}#}
-{#            </div>#}
-{#            <div>#}
-{#                <label for="production-date">Выберите дату производства:</label>#}
-{#                {{ form.production_date }}#}
-{#            </div>#}
-{#            <div>#}
-{#                <label for="history">История модуля:</label>#}
-{#                {{ form.history }}#}
-{#            </div>#}
-{#            <input type="submit" value="Отправить" class="submit-button">#}
-{#        </form>#}
-{#    </div>#}
-{#</body>#}
-{#</html>#}
-
-modules.html
-
 <!DOCTYPE html>
 <html lang="ru">
 {% extends 'main/layout.html' %}
@@ -181,6 +139,11 @@ modules.html
     </form>
 </div>
 {% endblock %}
+
+
+
+
+
 
 
 
