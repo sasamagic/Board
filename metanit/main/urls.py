@@ -1,6 +1,7 @@
 
 from django.urls import path, include #подключили новый метод
 from . import views
+# from .views import ProfileUpdateView, ProfileDetailView, UserRegisterView, UserLoginView, UserPasswordChangeView, UserForgotPasswordView, UserPasswordResetConfirmView
 
 urlpatterns = [
     path('', views.index, name='home'),
