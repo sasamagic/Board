@@ -6,8 +6,8 @@
     <div class="form-container">
 
         <form method="get" action="{% url 'status' %}">
-            <label for="serial-number">Введите серийный номер:</label>
-            <input type="text" id="serial-number" name="serial_number" required>
+            <label for="serial-number">Отсканируйте QR код или введите серийный номер:</label>
+            <input type="text" id="serial-number" name="serial_number" required autofocus>
             <button type="submit" class="submit-button">Отправить</button>
         </form><br><br>
 

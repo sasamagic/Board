@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ru">
+{% extends 'main/layout.html' %}
+
+{% block title %}
+    Регистрация несуществующего изделия
+{% endblock %}
+
+{% block content %}
+<div class="form-container">
+    <h1>Регистрация несуществующего изделия</h1>
+
+    <form method="post">
+        {% csrf_token %}
+        <div>
+            <label for="info-ec-number">Номер еЦ:</label>
+            {{ form.info_ec_number }}
+        </div>
+        <div>
+            <label for="info-product-family">Семейство продукта:</label>
+            {{ form.info_product_family }}
+        </div>
+        <div>
+            <label for="info-product-family-code">Код семейства продукта:</label>
+            {{ form.info_product_family_code }}
+        </div>
+        <div>
+            <label for="info-revision">Ревизия:</label>
+            {{ form.info_revision }}
+        </div>
+        <div>
+            <label for="info-revision-code">Код ревизии:</label>
+            {{ form.info_revision_code }}
+        </div>
+        <div>
+            <label for="info-product-type">Тип продукта:</label>
+            {{ form.info_product_type }}
+        </div>
+        <div>
+            <label for="info-product-type-code">Код типа продукта:</label>
+            {{ form.info_product_type_code }}
+        </div>
+        <div>
+            <label for="info-manufacturer">Производитель:</label>
+            {{ form.info_manufacturer }}
+        </div>
+        <div>
+            <label for="info-manufacturer-code">Код производителя:</label>
+            {{ form.info_manufacturer_code }}
+        </div>
+        <input type="submit" value="Отправить" class="submit-button">
+    </form>
+</div>
+{% endblock %}
