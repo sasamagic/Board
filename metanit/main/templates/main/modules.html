@@ -27,10 +27,13 @@
             <label for="history">История модуля:</label>
             {{ form.history }}
         </div>
+        <div>
+            <label for="number-of-module">Номер модуля:</label>
+            {{ form.number_of_module }}
+        </div>
         <input type="submit" value="Отправить" class="submit-button">
         <input type="submit" value="Печать этикеток" class="submit-button">
         <p>Такого изделия не существует? <a href="{% url 'new_info_modules' %}">Зарегистрируйте</a></p>
-{#        <a href="{% url 'modules_info' %}">Зарегистрировать несуществующее изделие?</a></p>#}
     </form>
 </div>
 {% endblock %}

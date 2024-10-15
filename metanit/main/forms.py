@@ -59,7 +59,7 @@ class info_modulesForm(ModelForm):
 class regForm(ModelForm):
     class Meta:
         model = reg
-        fields = ["ec_number", "module_count", "production_date", "history"]
+        fields = ["ec_number", "module_count", "production_date", "history", "number_of_module"]
         widgets = {
             "ec_number": forms.TextInput(attrs={
                 'id': 'ec-number',  # ID для автозаполнения
@@ -79,6 +79,11 @@ class regForm(ModelForm):
             "history": forms.Textarea(attrs={
                 'id': 'history',
                 'maxlength': '10000',
+            }),
+            "number_of_module": forms.NumberInput(attrs={
+                'id': 'number-of-module',
+                'min': '1',
+                'required': 'required',
             }),
         }
 

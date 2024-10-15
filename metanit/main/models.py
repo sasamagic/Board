@@ -2,22 +2,23 @@
 from django.db import models
 
 class reg(models.Model):
-    ec_number = models.CharField(max_length=100, default='')
-    module_count = models.PositiveIntegerField(verbose_name='Количество модулей')
+    ec_number = models.CharField(max_length=100, default='еЦ')
+    module_count = models.PositiveIntegerField(verbose_name='Количество изделий')
     production_date = models.DateField(verbose_name='Дата производства')
-    history = models.TextField(max_length=10000, verbose_name='История модуля')
+    history = models.TextField(max_length=10000, verbose_name='История изделия')
+    number_of_module = models.PositiveIntegerField(verbose_name='Номер изделия')
 
     def __str__(self):
-        return f"{self.ec_number} - {self.module_count}"  # Изменение в строковом представлении
+        return f"{self.ec_number} - {self.number_of_module}"  # Изменение в строковом представлении
 
 class info_modules(models.Model):
-    info_ec_number = models.CharField(max_length=100, verbose_name='Номер еЦ')
-    info_product_family = models.CharField(max_length=100, verbose_name='Семейство продукта')
-    info_product_family_code = models.PositiveIntegerField(verbose_name='Код семейства продукта')
+    info_ec_number = models.CharField(max_length=100, verbose_name='Номер еЦ', default='еЦ')
+    info_product_family = models.CharField(max_length=100, verbose_name='Семейство изделия')
+    info_product_family_code = models.PositiveIntegerField(verbose_name='Код семейства изделия')
     info_revision = models.PositiveIntegerField(verbose_name='Ревизия')
     info_revision_code = models.PositiveIntegerField(verbose_name='Код ревизии')
-    info_product_type = models.CharField(max_length=100, verbose_name='Тип продукта')
-    info_product_type_code = models.PositiveIntegerField(verbose_name='Код типа продукта')
+    info_product_type = models.CharField(max_length=100, verbose_name='Тип изделия')
+    info_product_type_code = models.PositiveIntegerField(verbose_name='Код типа изделия')
     info_manufacturer = models.CharField(max_length=100, verbose_name='Производитель')
     info_manufacturer_code = models.PositiveIntegerField(verbose_name='Код производителя')
     def __str__(self):

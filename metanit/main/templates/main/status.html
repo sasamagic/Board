@@ -29,11 +29,11 @@
                 <tbody>
                     {% for el in tasks %}
                         <tr>
-                            <td>Семейство продукта</td>
+                            <td>Семейство изделия</td>
                             <td>{{ el.product_family }}</td>
                         </tr>
                         <tr>
-                            <td>Тип продукта</td>
+                            <td>Тип изделия</td>
                             <td>{{ el.product_type }}</td>
                         </tr>
                         <tr>
@@ -45,7 +45,7 @@
                             <td>{{ el.serial_number }}</td>
                         </tr>
                         <tr>
-                            <td>Номер последовательности</td>
+                            <td>Порядковый номер</td>
                             <td>{{ el.sequence_number }}</td>
                         </tr>
                         <tr>
@@ -57,7 +57,7 @@
                             <td>{{ el.date_of_production }}</td>
                         </tr>
                         <tr>
-                            <td>История модуля</td>
+                            <td>История изделия</td>
                             <td>{{ el.history_of_module }}</td>
                         </tr>
                     {% endfor %}
