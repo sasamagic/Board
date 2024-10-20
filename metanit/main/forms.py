@@ -61,9 +61,8 @@ class regForm(ModelForm):
         model = reg
         fields = ["ec_number", "module_count", "production_date", "history", "number_of_module"]
         widgets = {
-            "ec_number": forms.TextInput(attrs={
+            "ec_number": forms.Textarea(attrs={
                 'id': 'ec-number',  # ID для автозаполнения
-                'class': 'masked',  # Класс для маски
                 'required': 'required',
             }),
             "module_count": forms.NumberInput(attrs={
@@ -86,6 +85,7 @@ class regForm(ModelForm):
                 'required': 'required',
             }),
         }
+
 
 class UserRegisterForm(UserCreationForm):
     email = forms.EmailField()

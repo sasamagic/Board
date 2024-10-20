@@ -10,3 +10,6 @@ admin.site.register(info_modules);
 
 from .models import SPP
 admin.site.register(SPP);
+
+# from .models import SerialNumber
+# admin.site.register(SerialNumber);

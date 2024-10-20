@@ -3,10 +3,11 @@ from database.models import Modules
 from .forms import regForm
 from .forms import info_modulesForm
 from .forms import UserRegisterForm
-from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
+from django.shortcuts import render, redirect
+
 # Create your views here.
 def new_info_modules (request):
     error = ''  # Инициализирует пустую строку для хранения сообщения об ошибке.
