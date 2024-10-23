@@ -1,0 +1,29 @@
+# django
+# pathlib
+# psycopg2-binary
+# asgiref==3.8.1
+# colorama==0.4.6
+# Django==5.1.1
+# django-autocomplete-light==3.11.0
+# django-crispy-forms==2.3
+# django-input-mask==2.0.2
+# pip==24.2
+# psycopg2-binary==2.9.9
+# pypng==0.20220715.0
+# qrcode==7.4.2
+# setuptools==75.1.0
+# six==1.16.0
+# sqlparse==0.5.1
+# typing_extensions==4.12.2
+# tzdata==2024.1
+# wheel==0.44.0
+Django
+django-crispy-forms
+django-input-mask
+django-autocomplete-light
+django-cors-headers
+djangorestframework
+psycopg2-binary
+pypng
+sqlparse
+tzdata
