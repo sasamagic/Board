@@ -7,7 +7,21 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status
+from .models import PDFFile
+from .serializers import PDFFileSerializer
 
+
+class UploadPDFView(APIView):
+    def post(self, request, format=None):
+        serializer = PDFFileSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=201)
+        return Response(serializer.errors, status=400)
+    
 # Create your views here.
 def new_info_modules (request):
     error = ''  # Инициализирует пустую строку для хранения сообщения об ошибке.
