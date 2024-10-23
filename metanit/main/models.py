@@ -36,6 +36,7 @@ class Serial_Numbers(models.Model):
 
     def str(self):
         return self.combined_field
+
 class SPP(models.Model):
     id = models.AutoField(primary_key=True)
     created_at = models.DateField(verbose_name='Дата прохождения СПП')
@@ -45,3 +46,9 @@ class SPP(models.Model):
     def __str__(self):
         return f"{self.id} - {self.file}"  # Изменение в строковом представлении
 
+class PDFFile(models.Model):
+    file = models.FileField(upload_to='pdfs/')
+    uploaded_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.file.name

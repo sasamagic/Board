@@ -1,6 +1,7 @@
 
 from django.urls import path, include #подключили новый метод
 from . import views
+from .views import UploadPDFView
 
 urlpatterns = [
     path('', views.index, name='home'),
@@ -9,6 +10,6 @@ urlpatterns = [
     path('status', views.status, name='status'),
     path('logout/', views.logout_view, name='logout'),
     path('registration', views.registration, name='registration'),
-    # path('registration', views.registration, name='main'),
     path('new_info_modules', views.new_info_modules, name='new_info_modules'), # для регистрации несуществующего изделия
+    path('upload-pdf/', UploadPDFView.as_view(), name='upload-pdf'),
 ]

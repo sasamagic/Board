@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    ports:
+      - "5000:5000"
+    networks:
+      - metanit_net
+    depends_on:
+      - db
+
+  db:
+    image: postgres
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: changeme
+    ports:
+      - "5432:5432"
+    networks:
+      - metanit_net
+    volumes:
+      - metanit_data:/var/lib/postgresql/data
+
+networks:
+  metanit_net: 
+    driver: bridge
+    # driver_opts:
+    #   com.docker.network.bridge.host_binding_ipv4: 127.0.0.1
+
+volumes:
+  metanit_data:
