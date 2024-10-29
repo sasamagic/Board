@@ -1,71 +1,183 @@
 {% extends 'main/layout.html' %}
-
 {% block title %}{{ title }}{% endblock %}
-
 {% block content %}
     <div class="form-container">
-
-        <form method="get" action="{% url 'status' %}">
+        <form method="get" action="{% url 'status' %}" onsubmit="removeSpaces()">
             <label for="serial-number">Отсканируйте QR код или введите серийный номер:</label>
             <input type="text" id="serial-number" name="serial_number" required autofocus>
             <button type="submit" class="submit-button">Отправить</button>
         </form><br><br>
 
         {% if tasks %}
-            <table>
-                <thead>
-                <style>
-    table {
-        border-collapse: separate;
-        border-spacing: 10px; /* Расстояние между колонками */
-    }
-                </style>
+            <div class="button-container">
+                <button type="button" class="submit-button" onclick="showSection('main-info', this)">Основная информация об изделии</button>
+                <button type="button" class="submit-button" onclick="showSection('check-status', this)">Статус проверки</button>
+                <button type="button" class="submit-button" onclick="showSection('verification-status', this)">Статус поверки</button>
+                <button type="button" class="submit-button" onclick="showSection('calibration-status', this)">Статус калибровки</button>
+                <button type="button" class="submit-button" onclick="showSection('transport-history', this)">История транспортировок</button>
+                <button type="button" class="submit-button" onclick="showSection('repair', this)">Ремонт</button>
+            </div>
 
-{#                    <tr>#}
-{#                        <th>Название</th>#}
-{#                        <th>Значение</th>#}
-{#                    </tr>#}
-                </thead>
-                <tbody>
-                    {% for el in tasks %}
-                        <tr>
-                            <td>Семейство изделия</td>
-                            <td>{{ el.product_family }}</td>
-                        </tr>
-                        <tr>
-                            <td>Тип изделия</td>
-                            <td>{{ el.product_type }}</td>
-                        </tr>
-                        <tr>
-                            <td>Ревизия</td>
-                            <td>{{ el.revision }}</td>
-                        </tr>
-                        <tr>
-                            <td>Серийный номер</td>
-                            <td>{{ el.serial_number }}</td>
-                        </tr>
-                        <tr>
-                            <td>Порядковый номер</td>
-                            <td>{{ el.sequence_number }}</td>
-                        </tr>
-                        <tr>
-                            <td>Производитель</td>
-                            <td>{{ el.manufacturer }}</td>
-                        </tr>
-                        <tr>
-                            <td>Дата производства</td>
-                            <td>{{ el.date_of_production }}</td>
-                        </tr>
-                        <tr>
-                            <td>История изделия</td>
-                            <td>{{ el.history_of_module }}</td>
-                        </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
+                <div id="main-info" class="info-section" style="display: none;">
+    <table>
+        <tbody>
+            {% for el in tasks %}
+                <tr><td style="padding-right: 20px;">Семейство изделия</td>
+                    <td>{{ el.product_family }}</td>
+                </tr>
+                <tr>
+                    <td style="padding-right: 20px;">Тип изделия</td>
+                    <td>{{ el.product_type }}</td>
+                </tr>
+                <tr>
+                    <td style="padding-right: 20px;">Ревизия</td>
+                    <td>{{ el.revision }}</td>
+                </tr>
+                <tr>
+                    <td style="padding-right: 20px;">Серийный номер</td>
+                    <td>{{ el.serial_number }}</td>
+                </tr>
+                <tr>
+                    <td style="padding-right: 20px;">Порядковый номер</td>
+                    <td>{{ el.sequence_number }}</td>
+                </tr>
+                <tr>
+                    <td style="padding-right: 20px;">Производитель</td>
+                    <td>{{ el.manufacturer }}</td>
+                </tr>
+                <tr>
+                    <td style="padding-right: 20px;">Дата производства</td>
+                    <td>{{ el.date_of_production }}</td>
+                </tr>
+                <tr>
+                    <td style="padding-right: 20px;">История изделия</td>
+                    <td>{{ el.history_of_module }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+            <!-- Пример других секций -->
+            <div id="check-status" class="info-section" style="display: none;">
+
+                <table>
+                    <tbody>
+                        {% for el in tasks2 %}
+                            <tr><td style="padding-right: 20px;">Отчет</td><td>{{ el.proverka_otchet }}</td></tr>
+                            <tr><td style="padding-right: 20px;">Информация</td><td>{{ el.proverka_info }}</td></tr>
+                            <tr><td style="padding-right: 20px;">Причина ошибки</td><td>{{ el.proverka_error }}</td></tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+
+            </div>
+            <div id="verification-status" class="info-section" style="display: none;">
+                <table>
+                    <tbody>
+                        {% for el in tasks3 %}
+                            <tr><td style="padding-right: 20px;">Отчет</td><td>{{ el.poverka_otchet }}</td></tr>
+                            <tr><td style="padding-right: 20px;">Информация</td><td>{{ el.poverka_info }}</td></tr>
+                            <tr><td style="padding-right: 20px;">Причина ошибки</td><td>{{ el.poverka_error }}</td></tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <div id="calibration-status" class="info-section" style="display: none;">
+
+                <table>
+                    <tbody>
+                        {% for el in tasks4 %}
+                            <tr><td style="padding-right: 20px;">Отчет</td><td>{{ el.kalibrovka_otchet }}</td></tr>
+                            <tr><td style="padding-right: 20px;">Информация</td><td>{{ el.kalibrovka_info }}</td></tr>
+                            <tr><td style="padding-right: 20px;">Причина ошибки</td><td>{{ el.kalibrovka_error }}</td></tr>
+                            <tr><td style="padding-right: 20px;">Коэффициенты калибровки</td><td>{{ el.kalibrovka_koeff }}</td></tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+
+            </div>
+            <div id="transport-history" class="info-section" style="display: none;">
+                <table>
+                    <tbody>
+                        {% for el in tasks5 %}
+                            <tr><td style="padding-right: 20px;">Номер накладной</td><td>{{ el.transportirovka_nakladnaya }}</td></tr>
+                            <tr><td style="padding-right: 20px;">Транспортировка из</td><td>{{ el.transportirovka_iz }}</td></tr>
+                            <tr><td style="padding-right: 20px;">Транспортировка в</td><td>{{ el.transportirovka_v }}</td></tr>
+                            <tr><td style="padding-right: 20px;">Дата транспортировки</td><td>{{ el.transportirovka_date }}</td></tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <div id="repair" class="info-section" style="display: none;">
+                <table>
+                    <tbody>
+                        {% for el in tasks6 %}
+                            <tr><td style="padding-right: 20px;">Отчет</td><td>{{ el.remont_otchet }}</td></tr>
+                            <tr><td style="padding-right: 20px;">Информация</td><td>{{ el.remont_info }}</td></tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            <style>
+                .button-container {
+                    display: flex;
+                    gap: 10px;
+                    margin-top: 20px;
+                }
+                .submit-button {
+                    background-color: #0d3b66; /* Синий цвет */
+                    color: white;
+                    padding: 10px;
+                    border: none;
+                    cursor: pointer;
+                }
+                .submit-button:hover {
+                    background-color: #0056b3; /* Темно-синий цвет при наведении */
+                }
+                .active-button {
+                    background-color: #0056b3; /* Светло-синий цвет */
+                    color: white;
+                }
+                .info-section {
+                    margin-top: 20px;
+                    padding: 10px;
+                    border: 1px solid #ccc;
+                }
+            </style>
+
+            <script>
+                // Удаляет пробелы из значения поля перед отправкой формы
+                function removeSpaces() {
+                    const input = document.getElementById('serial-number');
+                    input.value = input.value.replace(/\s+/g, '');
+                }
+
+                let activeButton = null;
+
+                function showSection(sectionId, button) {
+                    // Скрываем все секции
+                    const sections = document.querySelectorAll('.info-section');
+                    sections.forEach(section => {
+                        section.style.display = 'none';
+                    });
+
+                    // Показываем выбранную секцию
+                    document.getElementById(sectionId).style.display = 'block';
+
+                    // Убираем активный класс с предыдущей кнопки
+                    if (activeButton) {
+                        activeButton.classList.remove('active-button');
+                    }
+
+                    // Устанавливаем активный класс на текущую кнопку
+                    button.classList.add('active-button');
+                    activeButton = button;
+                }
+            </script>
         {% else %}
             <p>Такого модуля не существует</p>
         {% endif %}
-
     </div>
 {% endblock %}

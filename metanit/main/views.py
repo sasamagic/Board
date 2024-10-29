@@ -7,6 +7,7 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
+from .models import proverka, poverka, kalibrovka, transportirovka, remont
 
 # Create your views here.
 def new_info_modules (request):
@@ -15,7 +16,7 @@ def new_info_modules (request):
         form = info_modulesForm(request.POST)    # Создает экземпляр формы regForm, передавая данные, полученные из POST-запроса.
         if form.is_valid():     # Проверяет, является ли форма валидной (все обязательные поля заполнены и данные корректны).
             form.save()     # Сохраняет данные формы в базу данных.
-            return redirect('status')   # Перенаправляет пользователя на страницу с именем 'status' после успешного сохранения.
+            return redirect('new_info_modules')   # Перенаправляет пользователя на страницу с именем 'status' после успешного сохранения.
         else:
             error = 'ахтунг ошибка'     # Устанавливает сообщение об ошибке.
     else:       # Если метод запроса не POST, выполняется этот блок.
@@ -32,7 +33,7 @@ def modules (request):
         form = regForm(request.POST)    # Создает экземпляр формы regForm, передавая данные, полученные из POST-запроса.
         if form.is_valid():     # Проверяет, является ли форма валидной (все обязательные поля заполнены и данные корректны).
             form.save()     # Сохраняет данные формы в базу данных.
-            return redirect('status')   # Перенаправляет пользователя на страницу с именем 'status' после успешного сохранения.
+            return redirect('modules')   # Перенаправляет пользователя на страницу с именем 'status' после успешного сохранения.
         else:
             error = 'ахтунг ошибка'     # Устанавливает сообщение об ошибке.
     else:       # Если метод запроса не POST, выполняется этот блок.
@@ -52,13 +53,22 @@ def index(request):
 def status (request):
     serial_number = request.GET.get('serial_number')
     tasks = []
-
+    tasks2 = []
+    tasks3 = []
+    tasks4 = []
+    tasks5 = []
+    tasks6 = []
     if serial_number:
         # Фильтруем по серийному номеру
         tasks = Modules.objects.filter(serial_number=serial_number)
+        tasks2 = proverka.objects.filter(serial_number=serial_number)
+        tasks3 = poverka.objects.filter(serial_number=serial_number)
+        tasks4 = kalibrovka.objects.filter(serial_number=serial_number)
+        tasks5 = transportirovka.objects.filter(serial_number=serial_number)
+        tasks6 = remont.objects.filter(serial_number=serial_number)
     else:
         print(tasks)
-    return render(request,'main/status.html',{'title': 'Статус модуля','tasks':tasks})
+    return render(request,'main/status.html',{'title': 'Статус модуля','tasks':tasks,'tasks2':tasks2,'tasks3':tasks3,'tasks4':tasks4,'tasks5':tasks5,'tasks6':tasks6})
 
 def logout_view(request):
     auth_logout(request)
@@ -72,7 +82,7 @@ def registration (request):
             form.save()
             username = form.cleaned_data.get('username') # Извлекается имя пользователя (username) из очищенных данных формы
             messages.success(request, f'Создан аккаунт {username}!') # Генерируется сообщение об успешном создании аккаунта
-            return redirect('home')
+            return redirect('registration')
     else:
         form = UserRegisterForm()
     return render(request, 'main/registration.html', {'form': form})

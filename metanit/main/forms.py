@@ -1,11 +1,137 @@
-from .models import reg
+from .models import reg, info_modules, Serial_Numbers, proverka, poverka, kalibrovka, transportirovka, remont
 from django.forms import ModelForm
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
-from .models import info_modules  # Correct import from your app's models
-from .models import SPP
-# форма для регистрации польхзователя
+
+class Serial_NumbersForm(ModelForm):
+    class Meta:
+        model = Serial_Numbers
+        fields = ["combined_field"]
+        widgets = {
+            "combined_field": forms.Textarea(attrs={
+                'id': 'combined-field',  # ID для автозаполнения
+                'required': 'required',
+            }),
+        }
+
+class poverkaForm(ModelForm):
+    class Meta:
+        model = poverka
+        fields = ["serial_number","poverka_id", "poverka_otchet", "poverka_info", "poverka_error"]
+        widgets = {
+            "serial_number": forms.Textarea(attrs={
+                'id': 'serial-number',  # ID для автозаполнения
+                'required': 'required',
+            }),
+            "poverka_id": forms.Textarea(attrs={
+                'id': 'poverka-id',  # ID для автозаполнения
+                'required': 'required',
+            }),
+            "proverka_otchet": forms.Textarea(attrs={
+                'id': 'proverka-otchet',  # ID для автозаполнения
+                'required': 'required',
+            }),
+            "proverka_info": forms.Textarea(attrs={
+                'id': 'proverka-info',  # ID для автозаполнения
+                'required': 'required',
+            }),
+            "proverka_error": forms.Textarea(attrs={
+                'id': 'proverka-error',  # ID для автозаполнения
+                'required': 'required',
+            }),
+        }
+
+class proverkaForm(ModelForm):
+    class Meta:
+        model = proverka
+        fields = ["serial_number","proverka_id", "proverka_otchet", "proverka_info", "proverka_error"]
+        widgets = {
+            "serial_number": forms.Textarea(attrs={
+                'id': 'serial-number',  # ID для автозаполнения
+                'required': 'required',
+            }),
+            "proverka_id": forms.Textarea(attrs={
+                'id': 'proverka-id',  # ID для автозаполнения
+                'required': 'required',
+            }),
+            "proverka_otchet": forms.Textarea(attrs={
+                'id': 'proverka-otchet',  # ID для автозаполнения
+                'required': 'required',
+            }),
+            "proverka_info": forms.Textarea(attrs={
+                'id': 'proverka-info',  # ID для автозаполнения
+                'required': 'required',
+            }),
+            "proverka_error": forms.Textarea(attrs={
+                'id': 'proverka-error',  # ID для автозаполнения
+                'required': 'required',
+            }),
+        }
+
+class kalibrovkaForm(ModelForm):
+    class Meta:
+        model = kalibrovka
+        fields = ["serial_number","kalibrovka_id", "kalibrovka_otchet", "kalibrovka_info", "kalibrovka_error","kalibrovka_koeff"]
+        widgets = {
+            "serial_number": forms.Textarea(attrs={
+                'id': 'serial-number',  # ID для автозаполнения
+                'required': 'required',
+            }),
+            "kalibrovka_id": forms.Textarea(attrs={
+                'id': 'kalibrovka-id',  # ID для автозаполнения
+                'required': 'required',
+            }),
+            "kalibrovka_otchet": forms.Textarea(attrs={
+                'id': 'kalibrovka-otchet',  # ID для автозаполнения
+                'required': 'required',
+            }),
+            "kalibrovka_info": forms.Textarea(attrs={
+                'id': 'kalibrovka-info',  # ID для автозаполнения
+                'required': 'required',
+            }),
+            "kalibrovka_error": forms.Textarea(attrs={
+                'id': 'kalibrovka-error',  # ID для автозаполнения
+                'required': 'required',
+            }),
+            "kalibrovka_koeff": forms.Textarea(attrs={
+                'id': 'kalibrovka-koeff',  # ID для автозаполнения
+                'required': 'required',
+            }),
+        }
+
+class transportirovkaForm(ModelForm):
+    class Meta:
+        model = transportirovka
+        fields = ["serial_number","transportirovka_id", "transportirovka_nakladnaya", "transportirovka_iz", "transportirovka_v","transportirovka_date"]
+        widgets = {
+            "serial_number": forms.Textarea(attrs={
+                'id': 'serial-number',  # ID для автозаполнения
+                'required': 'required',
+            }),
+            "transportirovka_id": forms.Textarea(attrs={
+                'id': 'transportirovka-id',  # ID для автозаполнения
+                'required': 'required',
+            }),
+            "transportirovka_nakladnaya": forms.Textarea(attrs={
+                'id': 'transportirovka-nakladnaya',  # ID для автозаполнения
+                'required': 'required',
+            }),
+            "transportirovka_iz": forms.Textarea(attrs={
+                'id': 'transportirovka-iz',  # ID для автозаполнения
+                'required': 'required',
+            }),
+            "transportirovka_v": forms.Textarea(attrs={
+                'id': 'transportirovka-v',  # ID для автозаполнения
+                'required': 'required',
+            }),
+            "transportirovka_date": forms.Textarea(attrs={
+                'id': 'transportirovka-date',  # ID для автозаполнения
+                'required': 'required',
+            }),
+        }
+
+# форма для регистрации пользователя
 class info_modulesForm(ModelForm):
     class Meta:
         model = info_modules
@@ -86,37 +212,32 @@ class regForm(ModelForm):
             }),
         }
 
-
 class UserRegisterForm(UserCreationForm):
     email = forms.EmailField()
     class Meta:
         model = User
         fields = ['username', 'email', 'password1', 'password2']
 
-
-# Форма для стенда СПП
-class SPPForm(UserCreationForm):
+class remontForm(ModelForm):
     class Meta:
-        model = SPP
-        fields = ["id", "created_at", "user_id", "data", "file"]
+        model = remont
+        fields = ["serial_number","remont_id", "remont_otchet", "remont_info"]
         widgets = {
-            "id": forms.Textarea(attrs={
-                'id': 'SPP-id',
-                'min': '1',
+            "serial_number": forms.Textarea(attrs={
+                'id': 'serial-number',  # ID для автозаполнения
+                'required': 'required',
             }),
-            "created_at": forms.Textarea(attrs={
-                'id': 'SPP-created-at',
-                'type': 'date',
+            "remont_id": forms.Textarea(attrs={
+                'id': 'remont-id',  # ID для автозаполнения
+                'required': 'required',
             }),
-            "user_id": forms.NumberInput(attrs={
-                'id': 'SPP-user-id',
-                'min': '1',
+            "remont_otchet": forms.Textarea(attrs={
+                'id': 'remont-otchet',  # ID для автозаполнения
+                'required': 'required',
             }),
-            "data": forms.NumberInput(attrs={
-                'id': 'SPP-data',
-                'maxlength': '1000000',
-            }),
-            "file": forms.NumberInput(attrs={
-                'id': 'SPP-file',
+            "remont_info": forms.Textarea(attrs={
+                'id': 'remont-info',  # ID для автозаполнения
+                'required': 'required',
             }),
         }
+
