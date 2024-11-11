@@ -9,11 +9,14 @@
 {% block content %}
 <div class="form-container">
     <h1>Регистрация несуществующего изделия</h1>
-
+{% if messages %}
+    {% for message in messages %}
+        <p class="success">{{ message }}</p>
+    {% endfor %}
+{% endif %}
     <form method="post">
         {% csrf_token %}
             <script>
-
 document.addEventListener("DOMContentLoaded", function() {
     const ecNumberInput = document.getElementById("info-ec-number");
     if (ecNumberInput) {
@@ -51,6 +54,8 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 });
 </script>
+
+
         <div>
             <label for="info-ec-number">Номер еЦ:</label>
             {{ form.info_ec_number }}
@@ -88,6 +93,12 @@ document.addEventListener("DOMContentLoaded", function() {
             {{ form.info_manufacturer_code }}
         </div>
         <input type="submit" value="Отправить" class="submit-button">
+   <style>
+       .submit-button {
+           margin-right: 300px; /* Отступ справа */
+       }
+   </style>
+        <a href="{% url 'modules' %}">Назад</a>
     </form>
 </div>
 {% endblock %}

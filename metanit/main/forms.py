@@ -1,8 +1,10 @@
-from .models import reg, info_modules, Serial_Numbers, proverka, poverka, kalibrovka, transportirovka, remont
+from .models import reg, info_modules, Serial_Numbers, proverka, poverka, \
+    kalibrovka, transportirovka, remont
 from django.forms import ModelForm
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
+
 
 class Serial_NumbersForm(ModelForm):
     class Meta:
@@ -187,9 +189,10 @@ class regForm(ModelForm):
         model = reg
         fields = ["ec_number", "module_count", "production_date", "history", "number_of_module"]
         widgets = {
-            "ec_number": forms.Textarea(attrs={
+            "ec_number": forms.TextInput(attrs={
                 'id': 'ec-number',  # ID для автозаполнения
                 'required': 'required',
+                'maxlength': '10000',
             }),
             "module_count": forms.NumberInput(attrs={
                 'id': 'modules',
@@ -216,7 +219,8 @@ class UserRegisterForm(UserCreationForm):
     email = forms.EmailField()
     class Meta:
         model = User
-        fields = ['username', 'email', 'password1', 'password2']
+        # fields = ['username', 'email', 'password1', 'password2']
+        fields = ['username', 'password1', 'password2']
 
 class remontForm(ModelForm):
     class Meta:

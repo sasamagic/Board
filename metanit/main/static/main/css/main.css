@@ -1,3 +1,31 @@
+.delete-button {
+    background: none; /* Убирает фон */
+    border: none; /* Убирает рамку */
+    color: red; /* Задает красный цвет крестика */
+    font-size: 30px; /* Размер крестика */
+    outline: none; /* Убирает обводку при фокусе */
+    padding: 0; /* Убирает внутренние отступы */
+    margin: 0; /* Убирает внешние отступы */
+}
+
+
+.delete-button:hover {
+    color: darkred; /* Более темный оттенок при наведении */
+}
+
+.record-list {
+    list-style-type: none; /* Убирает маркеры у списка */
+    padding: 0; /* Убирает отступы */
+}
+
+.record-item {
+    border-bottom: 1px solid #ddd; /* Разделяет элементы строками */
+    padding: 10px; /* Добавляет отступ внутри строки */
+    display: flex; /* Позволяет выравнивать элементы по горизонтали */
+    justify-content: space-between; /* Размещает контент с пробелами */
+    align-items: center; /* Центрирует элементы по вертикали */
+}
+
 body {
     margin: 0;
     font-family: Arial, sans-serif;
@@ -103,6 +131,14 @@ aside ul {
 aside ul li {
     margin-top: 20px;
 }
+.icon-white {
+    color: white; /* Сделать иконку белой */
+}
+.no-bullet {
+    list-style: none; /* Убирает точку перед элементом списка */
+    padding-left: 0; /* Убирает отступ слева, если нужно */
+}
+
 
 aside ul li, aside ul a {
     color: white;
@@ -118,8 +154,8 @@ aside ul li:hover, aside ul a:hover {
 /* Центрирование текста */
 .center-text {
     text-align: center;
-    margin-top: 20px; /* Можно настроить отступ сверху */
-    margin-bottom: 20px; /* Можно настроить отступ снизу */
+    /*margin-top: 20px; !* Можно настроить отступ сверху *!*/
+    /*margin-bottom: 20px; !* Можно настроить отступ снизу *!*/
 }
 
 .form_auth_block {
@@ -171,7 +207,7 @@ aside ul li:hover, aside ul a:hover {
     align-items: center;
     flex-direction: column;
     height: 100%;
-    padding: 20px;
+    /*padding: 20px;*/
 }
 
 form {
@@ -190,8 +226,6 @@ form label {
     font-weight: bold;
 }
 
-
-
 .header .logo {
     font-size: 24px; /* Размер шрифта */
     font-weight: bold; /* Жирное начертание */
@@ -202,7 +236,6 @@ form label {
 .header a {
     text-decoration: none; /* Убираем подчеркивание у ссылки */
 }
-
 
 form select,
 form input[type="number"],
@@ -256,44 +289,47 @@ form textarea {
     font-weight: bold;
 }
 
-/* Стили для кнопки авторизации на верхней ленте */
-.header .auth-button {
-    background: #0d3b66; /* Цвет кнопки */
-    border: none;
-    color: white;
-    padding: 10px 20px;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-       margin-left: 1100px; /* Отступ от кнопки авторизации */
+.header {
+  justify-content: space-between; /* Разместить элементы по краям */
+  align-items: center;
+  padding: 10px;
+}
+
+/* Стиль для кнопок */
+.header .auth-button,
+.header .logout-button {
+  background-color: #0d3b66; /* Темно-синий цвет */
+  color: white; /* Белый текст */
+  padding: 8px 15px; /* Отступы */
+  border: none; /* Убрать рамку */
+  border-radius: 5px; /* Скругленные углы */
+  font-size: 16px; /* Размер шрифта */
+  cursor: pointer; /* Курсор указателя */
+}
+
+@media (max-width: 768px) {
+  .header .auth-button,
+  .header .logout-button {
+    padding: 5px 10px;
+    font-size: 14px;
+  }
 }
 
 .header .auth-button:hover {
-    background-color: #0056b3; /* Темно-синий цвет при наведении */
-}
-
-.header .logout-button {
-    background: #0d3b66; /* Красный цвет */
-    border: none;
-    color: white;
-    padding: 10px 20px;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-
+    background-color: #0056b3;
 }
 
 .header .logout-button:hover {
-    background-color: #0056b3; /* Темнее красный при наведении */
+    background-color: #0056b3;
 }
 
-.registration-link {
+.registrationFlink {
     text-align: center;
     margin-top: 20px;
 }
 
 .registration-link a {
-    color: #4CAF50;
+    color: #0056b3;
     text-decoration: none;
 }
 
@@ -312,5 +348,6 @@ form textarea {
     overflow-y: auto; /* Вертикальная прокрутка */
     margin-top: 60px; /* Добавляем отступ сверху, чтобы избежать наложения */
 }
+
 
 

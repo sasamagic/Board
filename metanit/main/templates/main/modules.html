@@ -3,19 +3,26 @@
 {% extends 'main/layout.html' %}
 {% block title %}
     Регистрация модуля
+
 {% endblock %}
 
 {% block content %}
 <div class="form-container">
     <h1>Регистрация модуля</h1>
 
+{% if messages %}
+    {% for message in messages %}
+        <p class="success">{{ message }}</p>
+    {% endfor %}
+{% endif %}
+
     <form method="post">
         {% csrf_token %}
-        <script>
 
+            <script>
 document.addEventListener("DOMContentLoaded", function() {
     const ecNumberInput = document.getElementById("ec-number");
-    if (ecNumberInput) {gAdmin 4 started
+    if (ecNumberInput) {
         ecNumberInput.addEventListener("input", function(e) {
             let value = e.target.value.replace(/[^0-9]/g, ""); // Удаляем все нецифровые символы
             let formattedValue = "еЦ";
@@ -51,10 +58,12 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 </script>
 
+
         <div>
             <label for="ec-number">Номер еЦ:</label>
             {{ form.ec_number }}
         </div>
+
         <div>
             <label for="modules">Выберите количество модулей:</label>
             {{ form.module_count }}

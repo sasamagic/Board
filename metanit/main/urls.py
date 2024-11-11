@@ -10,4 +10,5 @@ urlpatterns = [
     path('logout/', views.logout_view, name='logout'),
     path('registration', views.registration, name='registration'),
     path('new_info_modules', views.new_info_modules, name='new_info_modules'), # для регистрации несуществующего изделия
+    path('history_of_registration', views.history_of_registration, name='history_of_registration'), # ИСТОРИЯ РЕГИСТРАЦИИ
 ]

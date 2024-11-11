@@ -14,26 +14,26 @@
 <body>
 
 <header class="header">
+
 <a href="{% url 'home' %}">
-        <span class="logo">BoardTracker</span>
+    <li class="no-bullet"><i class="fas fa-home fa-2x icon-white"></i></li>
+</a>
+
+
     </a>
-
-
     {% if user.is_authenticated %}
         <a href="{% url 'logout' %}">
             <button class="logout-button">Выход</button>
         </a>
     {% else %}
-
-<a href="{% url 'user' %}"> <button class="auth-button">Авторизация</button> </a>
-
+        <a href="{% url 'user' %}"> <button class="auth-button">Авторизация</button> </a>
     {% endif %}
 </header>
-
     <a href="{% url 'logout' %}">
         <button class="logout-button">Выход</button>
     </a>
 </header>
+
 
     <aside id="sidebar">
         <button class="sidebar-toggle" id="toggle-sidebar">
@@ -44,9 +44,13 @@
         <h3>Навигация</h3>
         <ul>
             <a href="{% url 'home' %}"><li><i class="fas fa-home"></i>Главная</li></a>
-            <a href="{% url 'modules' %}"><li><i class="fas fa-cogs"></i>Регистрация модулей</li></a> {# пока работаю с этой фигней#}
-            <a href="{% url 'status' %}"><li><i class="fas fa-info-circle"></i>Узнать статус модулей</li></a>
-
+            {% if user.is_authenticated %}
+            <a href="{% url 'modules' %}"><li><i class="fas fa-cogs"></i>Регистрация изделий</li></a>
+            <a href="{% url 'history_of_registration' %}"><li><i class="fas fa-cogs"></i>История регистрации изделий</li></a>
+            <a href="{% url 'status' %}"><li><i class="fas fa-info-circle"></i>Узнать статус изделий</li></a>
+            {% else %}
+            <a href="{% url 'user' %}"><li><i class="fas fa-lock"></i>Авторизуйтесь для доступа</li></a>
+            {% endif %}
         </ul>
     </aside>
     <main id="content">
@@ -75,3 +79,4 @@
     </script>
 </body>
 </html>
+

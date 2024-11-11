@@ -23,42 +23,41 @@
         <tbody>
             {% for el in tasks %}
                 <tr><td style="padding-right: 20px;">Семейство изделия</td>
-                    <td>{{ el.product_family }}</td>
+                    <td>{{ el.product_family_display }}</td>
                 </tr>
                 <tr>
                     <td style="padding-right: 20px;">Тип изделия</td>
-                    <td>{{ el.product_type }}</td>
+                    <td>{{ el.product_type_display }}</td>
                 </tr>
                 <tr>
                     <td style="padding-right: 20px;">Ревизия</td>
-                    <td>{{ el.revision }}</td>
+                    <td>{{ el.revision_display }}</td>
                 </tr>
                 <tr>
                     <td style="padding-right: 20px;">Серийный номер</td>
-                    <td>{{ el.serial_number }}</td>
+                    <td>{{ el.serial_number_display }}</td>
                 </tr>
                 <tr>
                     <td style="padding-right: 20px;">Порядковый номер</td>
-                    <td>{{ el.sequence_number }}</td>
+                    <td>{{ el.sequence_number_display }}</td>
                 </tr>
                 <tr>
                     <td style="padding-right: 20px;">Производитель</td>
-                    <td>{{ el.manufacturer }}</td>
+                    <td>{{ el.manufacturer_display }}</td>
                 </tr>
                 <tr>
                     <td style="padding-right: 20px;">Дата производства</td>
-                    <td>{{ el.date_of_production }}</td>
+                    <td>{{ el.date_of_production_display }}</td>
                 </tr>
                 <tr>
                     <td style="padding-right: 20px;">История изделия</td>
-                    <td>{{ el.history_of_module }}</td>
+                    <td>{{ el.history_of_module_display}}</td>
                 </tr>
             {% endfor %}
         </tbody>
     </table>
 </div>
 
-            <!-- Пример других секций -->
             <div id="check-status" class="info-section" style="display: none;">
 
                 <table>

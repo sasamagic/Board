@@ -1,5 +1,6 @@
 # Тут описана модель для хранения информации формы "Регистрация модуля"
 from django.db import models
+
 class reg(models.Model):
     ec_number = models.ForeignKey(
         'info_modules',  # Ссылка на модель info_modules
@@ -32,9 +33,11 @@ class info_modules(models.Model):
         return f"{self.info_ec_number} - {self.info_manufacturer_code}"
 
 class Serial_Numbers(models.Model):
-    combined_field = models.TextField(verbose_name='Объединенное поле', blank=True, unique=True)
+    # user = models.ForeignKey(User, on_delete=models.CASCADE)  # РАБОТАЮ С ЭТИМ
+    combined_field = models.TextField(verbose_name='Объединенное поле', unique=True, blank=True)
     def str(self):
-        return self.combined_field
+        # return f"{self.combined_field} - {self.user}" # РАБОТАЮ С ЭТИМ
+        return f"{self.combined_field}"
 
 
 class proverka(models.Model):
@@ -118,3 +121,4 @@ class remont(models.Model):
 
     def __str__(self):
         return f"{self.remont_id} - {self.remont_info}"
+

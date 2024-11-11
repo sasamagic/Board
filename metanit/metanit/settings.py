@@ -133,17 +133,4 @@ STATICFILES_DIRS = [
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
-# Для отправки сброса пароля на почту
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = '587'
-EMAIL_USE_TLS = True
-
-EMAIL_HOST_USER = 'rosatomnikiet@gmail.com'
-EMAIL_HOST_PASSWORD = '!RNtMa225R?%'
-
-EMAIL_SERVER = EMAIL_HOST_USER
-DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
-EMAIL_ADMIN = ['rosatomnikiet@gmail.com']
-
+LOGIN_URL = 'user'  # Это URL, куда будет перенаправлен неавторизованный пользователь
